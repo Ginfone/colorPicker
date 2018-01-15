@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+	#container{
+		display:flex;
+		height:100vh;
+	}
+	#wrapper{
+		display:flex;
+		flex-wrap: wrap;
+		width:70%;
+		padding:0;
+		margin:0;
+	}
+	.block{
+		width:100px;
+		height:100px;
+		display:block;
+		cursor:pointer;
+	}
+	#result{
+		width:30%;
+		text-align: center;
+		align-self: center;
+		font-size:24px;
+	}
+	</style>
+</head>
+<body>
+	<div id='container'>
+		<div id='wrapper' onclick=pitch(event)>
+		</div>
+		<div id='result'>
+		</div>
+		<button id='copy' onclick=copy()>copy</button>
+	</div>
+	<script>
+		const color = ['#7CCBDC','#2D3B3D'];
+
+		for(let x= 0 ; x<color.length ; x++){
+			let createBlock = document.createElement('DIV');
+			createBlock.setAttribute('class','block');
+			createBlock.setAttribute('color',color[x]);
+			document.getElementById('wrapper').appendChild(createBlock).style.backgroundColor=color[x];
+		}
+
+		function pitch(event){
+			if(event.target.className === 'block'){
+				document.getElementById('result').innerHTML = event.target.getAttribute('color');
+			}
+		}
+		function copy(){
+			document.getElementById('result').select();
+			document.execCommand('copy');
+			alert('selected');
+		}
+		// function copyText(obj)
+		// {
+		//   var rng = document.body.createTextRange();
+		//   rng.moveToElementText(obj);
+		//   rng.scrollIntoView();
+		//   rng.select();
+		//   rng.execCommand("Copy");
+		//   rng.collapse(false);
+		//   alert("复制成功!");
+		// }
+	</script>
+</body>
+</html>
