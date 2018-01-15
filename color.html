@@ -28,16 +28,19 @@
 		text-align: center;
 		align-self: center;
 		font-size:24px;
+		border:0;
 	}
+	#result:focus{
+		outline: none;
+	}
+
 	</style>
 </head>
 <body>
 	<div id='container'>
 		<div id='wrapper' onclick=pitch(event)>
 		</div>
-		<div id='result'>
-		</div>
-		<button id='copy' onclick=copy()>copy</button>
+		<input id='result' readonly/>
 	</div>
 	<script>
 		const color = ['#7CCBDC','#2D3B3D'];
@@ -51,24 +54,15 @@
 
 		function pitch(event){
 			if(event.target.className === 'block'){
-				document.getElementById('result').innerHTML = event.target.getAttribute('color');
+				document.getElementById('result').value = event.target.getAttribute('color');
+				copy();
 			}
 		}
 		function copy(){
 			document.getElementById('result').select();
 			document.execCommand('copy');
-			alert('selected');
+			
 		}
-		// function copyText(obj)
-		// {
-		//   var rng = document.body.createTextRange();
-		//   rng.moveToElementText(obj);
-		//   rng.scrollIntoView();
-		//   rng.select();
-		//   rng.execCommand("Copy");
-		//   rng.collapse(false);
-		//   alert("复制成功!");
-		// }
 	</script>
 </body>
 </html>
